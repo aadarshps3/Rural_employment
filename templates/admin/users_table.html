@@ -1,0 +1,73 @@
+<!doctype html>
+{% extends "admin_dashboard_base.html" %}
+{% block content %}
+
+
+<h1>Users list</h1>
+ <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <table class="table">
+  <thead class="table table-striped">
+
+    <tr>
+      <th scope="col">SL NO</th>
+      <th scope="col">NAME</th>
+      <th scope="col">CONTACT NUMBER</th>
+      <th scope="col">EMAIL</th>
+        <th scope="col">ADDRESS</th>
+        <th scope="col">AADHAR</th>
+        <th scope="col">RESUME</th>
+        <th scope="col">DELETE</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.name}}</td>
+
+        <td>{{i.contact_no}}</td>
+        <td>{{i.email}}</td>
+        <td>{{i.address}}</td>
+        <td>{{i.adhar_number}}</td>
+<td>
+<!--<img src="{{ i.Resume.url }}" style="width:100px; height:100px;"/>-->
+        <a href="{{ i.Resume.url }}" download>
+        <button>Download</button>
+        </a>
+       </td>
+
+
+        <td>
+
+
+         <form action="{% url 'delete_users' i.id %}"style="display: inline;"
+                              onsubmit="window.mytest()">
+                            {% csrf_token %}
+                            <input type="hidden" value="{{ i.id }}"/>
+                            <button type="submit" class="btn btn-danger waves-effect width-md waves-light">Delete
+                            </button>
+                        </form>
+      </td>
+  {% endfor %}
+
+
+    </tr>
+  </tbody>
+
+
+<script type="text/javascript">
+window.mytest = function()
+{ var isValid = confirm('Are you sure Want to Delete ?');if (!isValid) { event.preventDefault();
+  }}
+</script>
+
+{% endblock %}

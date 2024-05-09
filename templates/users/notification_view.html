@@ -1,0 +1,44 @@
+<!doctype html>
+{% extends "user_base.html" %}
+{% block content %}
+
+
+<h1>Notification</h1>
+ <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+    <table class="table">
+  <thead class="table table-striped">
+
+    <tr>
+      <th scope="col">SL NO</th>
+      <th scope="col">NAME</th>
+      <th scope="col">NOTIFICATIONS</th>
+
+
+    </tr>
+  </thead>
+  <tbody>
+  {% for i in data %}
+    <tr>
+        <td>{{forloop.counter}}</td>
+        <td>{{i.message}}</td>
+
+        <td>{{i.date}}</td>
+
+
+
+{% endfor %}
+
+    </tr>
+  </tbody>
+
+    </table>
+
+
+{% endblock %}

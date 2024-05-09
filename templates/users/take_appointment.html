@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends "user_base.html" %}
+{% block content %}
+
+<div class="col-lg-8">
+    <div class="card">
+        <div class="card-header"><strong>Book Appointment</strong></div>
+        <div class="card-body card-block">
+            <form method="post">{% csrf_token %}
+                <div class="form-group">
+                    <label class=" form-control-label">Panchayath</label>
+                    <input    class="form-control" readonly value="{{schedule.user.panchayath_name}}">
+
+                </div>
+
+
+                 <div class="form-group">
+                    <label class=" form-control-label">Scheme</label>
+                     <input  required  class="form-control" readonly value="{{schedule.scheme}}">
+
+                </div>
+                <div class="form-group">
+                    <label  class=" form-control-label">Start date</label>
+                 <input  required  class="form-control" readonly value="{{schedule.start_date}}">
+
+                </div>
+
+                <div class="form-group">
+                    <label  class=" form-control-label">End date</label>
+                 <input  required  class="form-control" readonly value="{{schedule.end_date}}">
+
+                </div>
+                  <div class="form-group">
+                    <label  class=" form-control-label">qualification</label>
+                 <input  required  class="form-control" readonly value="{{schedule.qualifications}}">
+
+                </div>
+                <div class="form-group">
+                    <label  class=" form-control-label">Designation</label>
+                 <input  required  class="form-control" readonly value="{{schedule.designation}}">
+
+                </div>
+
+                <div class="form-actions form-group ">
+                    <button type="submit" class="btn btn-primary btn-sm">Apply</button>
+                </div>
+                {% for message in messages %}
+                <div class="alert alert-primary" role="alert">
+                    {{message}}
+                </div>
+                {% endfor %}
+            </form>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
